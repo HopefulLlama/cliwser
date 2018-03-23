@@ -1,0 +1,19 @@
+{
+  "name": "cliwser",
+  "version": "0.0.0",
+  "description": "NodeJS CLI internet browser",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^22.4.3"
+  },
+  "dependencies": {
+    "himalaya": "^1.0.1",
+    "inquirer": "^5.1.0",
+    "puppeteer": "^1.2.0"
+  }
+}
