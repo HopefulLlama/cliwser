@@ -10,6 +10,12 @@ exports[`b should render 'b' with nested content 1`] = `"**[Google](http://www.g
 
 exports[`b should render 'b' without content 1`] = `""`;
 
+exports[`del should render 'del' with content 1`] = `"~~Del me fam~~"`;
+
+exports[`del should render 'del' with nested content 1`] = `"~~[Google](http://www.google.com)~~"`;
+
+exports[`del should render 'del' without content 1`] = `""`;
+
 exports[`div Content should all be nested 1`] = `
 "
   
@@ -85,6 +91,12 @@ exports[`p should render 'p' 1`] = `
 "
 This is a paragraph"
 `;
+
+exports[`strike should render 'strike' with content 1`] = `"~~Strike me fam~~"`;
+
+exports[`strike should render 'strike' with nested content 1`] = `"~~[Google](http://www.google.com)~~"`;
+
+exports[`strike should render 'strike' without content 1`] = `""`;
 
 exports[`strong should render 'strong' with content 1`] = `"**Strong me fam**"`;
 

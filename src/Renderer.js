@@ -42,6 +42,10 @@ function b(himilayaObject, renderProperties) {
   return wrapNonEmptyString(renderComponents(himilayaObject.children, renderProperties), '**');
 }
 
+function del(himilayaObject, renderProperties) {
+  return wrapNonEmptyString(renderComponents(himilayaObject.children, renderProperties), '~~');
+}
+
 function div(himilayaObject, renderProperties) {
   const indentedMarkdown = himilayaObject.children
     .map(himilayaChild => renderHimilayaObject(himilayaChild, renderProperties))
@@ -54,7 +58,7 @@ function div(himilayaObject, renderProperties) {
 
 function i(himilayaObject, renderProperties) {
   return wrapNonEmptyString(renderComponents(himilayaObject.children, renderProperties), '_');
-};
+}
 
 function input(himilayaObject, renderProperties) {
   return `TO BE IMPLEMENTED: input${os.EOL.repeat(2)}`;
@@ -85,6 +89,7 @@ const renderComponent = {
   a,
   area,
   b,
+  del,
   div,
   em: i,
   i,
@@ -93,6 +98,7 @@ const renderComponent = {
   li,
   ol: generateListRenderer('ol'),
   p,
+  strike: del,
   strong: b,
   title,
   ul: generateListRenderer('ul'),

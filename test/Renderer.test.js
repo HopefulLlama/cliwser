@@ -2,20 +2,6 @@ const { getHimilayaAttribute, getHimilayaObject }  = require('./TestUtils');
 
 const { renderComponent, renderComponents } = require('../src/Renderer');
 
-const renderedTags = [
-  'a',
-  'area',
-  'b',
-  'img',
-  'input',
-  'li',
-  'ol',
-  'p',
-  'strong',
-  'title',
-  'ul',
-];
-
 const unrenderedTags = [
   '!DOCTYPE',
   'abbr',
@@ -43,7 +29,6 @@ const unrenderedTags = [
   'colgroup',
   'datalist',
   'dd',
-  'del',
   'details',
   'dfn',
   'dialog',
@@ -105,7 +90,6 @@ const unrenderedTags = [
   'small',
   'source',
   'span',
-  'strike',
   'style',
   'sub',
   'summary',
@@ -181,6 +165,30 @@ describe('b', () => {
     const a = getHimilayaObject('a', 'Google', [href]);
     const b = getHimilayaObject('b', undefined, undefined, [a]);
     const markdown = renderComponent.b(b);
+
+    expect(markdown).toMatchSnapshot();
+  });
+});
+
+describe('del', () => {
+  test(`${renderTestName('del')} without content`, () => {
+    const himilayaObject = getHimilayaObject('del');
+    const markdown = renderComponent.del(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('del')} with content`, () => {
+    const himilayaObject = getHimilayaObject('del', 'Del me fam');
+    const markdown = renderComponent.del(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('del')} with nested content`, () => {
+    const a = getHimilayaObject('a', 'Google', [href]);
+    const del = getHimilayaObject('del', undefined, undefined, [a]);
+    const markdown = renderComponent.del(del);
 
     expect(markdown).toMatchSnapshot();
   });
@@ -337,6 +345,30 @@ describe('p', () => {
   test(renderTestName('p'), () => {
     const himilayaObject = getHimilayaObject('p', 'This is a paragraph');
     const markdown = renderComponent.p(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+});
+
+describe('strike', () => {
+  test(`${renderTestName('strike')} without content`, () => {
+    const himilayaObject = getHimilayaObject('strike');
+    const markdown = renderComponent.strike(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('strike')} with content`, () => {
+    const himilayaObject = getHimilayaObject('strike', 'Strike me fam');
+    const markdown = renderComponent.strike(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('strike')} with nested content`, () => {
+    const a = getHimilayaObject('a', 'Google', [href]);
+    const strike = getHimilayaObject('strike', undefined, undefined, [a]);
+    const markdown = renderComponent.strike(strike);
 
     expect(markdown).toMatchSnapshot();
   });
