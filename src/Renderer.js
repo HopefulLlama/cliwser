@@ -5,51 +5,8 @@ function getHimilayaAttribute(himilayaObject, attribute) {
   return (attr !== undefined) ? attr.value : '';
 }
 
-function title(himilayaObject, renderProperties) {
-  return `# ${renderComponents(himilayaObject.children, renderProperties)}${os.EOL.repeat(2)}`;
-}
-
 function wrapNonEmptyString(string, wrapping) {
   return (string !== '') ? `${wrapping}${string}${wrapping}` : string;
-};
-
-function b(himilayaObject, renderProperties) {
-  return wrapNonEmptyString(renderComponents(himilayaObject.children, renderProperties), '**');
-}
-
-function div(himilayaObject, renderProperties) {
-  const indentedMarkdown = himilayaObject.children
-    .map(himilayaChild => renderHimilayaObject(himilayaChild, renderProperties))
-    .join(os.EOL)
-    .split(os.EOL)
-    .map(markdown => `  ${markdown}`)
-    .join(os.EOL);
-  return `${os.EOL}${indentedMarkdown}`;
-}
-
-function a(himilayaObject, renderProperties) {
-  const href = getHimilayaAttribute(himilayaObject, 'href');
-  return `[${renderComponents(himilayaObject.children, renderProperties)}](${href})`;
-}
-
-function i(himilayaObject, renderProperties) {
-  return wrapNonEmptyString(renderComponents(himilayaObject.children, renderProperties), '_');
-};
-
-function input(himilayaObject, renderProperties) {
-  return `TO BE IMPLEMENTED: input${os.EOL.repeat(2)}`;
-}
-
-function img(himilayaObject, renderProperties) {
-  const alt = getHimilayaAttribute(himilayaObject, 'alt');
-  const src = getHimilayaAttribute(himilayaObject, 'src');
-  let title = getHimilayaAttribute(himilayaObject, 'title');
-  title = (title !== '') ? ` "${title}" ` : title;
-  return `![${alt}](${src}${title})`;
-}
-
-function p(himilayaObject, renderProperties) {
-  return `${os.EOL}${renderComponents(himilayaObject.children, renderProperties)}`;
 }
 
 function generateListRenderer(tagName) {
@@ -69,9 +26,9 @@ function generateListRenderer(tagName) {
   };
 }
 
-function li(himilayaObject, renderProperties) {
-  const prefix = (renderProperties.list.type === 'ul') ? '* ': `${renderProperties.list.index + 1}. `;
-  return `${prefix}${renderComponents(himilayaObject.children, renderProperties)}${os.EOL}`;
+function a(himilayaObject, renderProperties) {
+  const href = getHimilayaAttribute(himilayaObject, 'href');
+  return `[${renderComponents(himilayaObject.children, renderProperties)}](${href})`;
 }
 
 function area(himilayaObject, renderProperties) {
@@ -79,6 +36,49 @@ function area(himilayaObject, renderProperties) {
   const href = getHimilayaAttribute(himilayaObject, 'href');
 
   return `[${alt}](${href})`;
+}
+
+function b(himilayaObject, renderProperties) {
+  return wrapNonEmptyString(renderComponents(himilayaObject.children, renderProperties), '**');
+}
+
+function div(himilayaObject, renderProperties) {
+  const indentedMarkdown = himilayaObject.children
+    .map(himilayaChild => renderHimilayaObject(himilayaChild, renderProperties))
+    .join(os.EOL)
+    .split(os.EOL)
+    .map(markdown => `  ${markdown}`)
+    .join(os.EOL);
+  return `${os.EOL}${indentedMarkdown}`;
+}
+
+function i(himilayaObject, renderProperties) {
+  return wrapNonEmptyString(renderComponents(himilayaObject.children, renderProperties), '_');
+};
+
+function input(himilayaObject, renderProperties) {
+  return `TO BE IMPLEMENTED: input${os.EOL.repeat(2)}`;
+}
+
+function img(himilayaObject, renderProperties) {
+  const alt = getHimilayaAttribute(himilayaObject, 'alt');
+  const src = getHimilayaAttribute(himilayaObject, 'src');
+  let title = getHimilayaAttribute(himilayaObject, 'title');
+  title = (title !== '') ? ` "${title}" ` : title;
+  return `![${alt}](${src}${title})`;
+}
+
+function li(himilayaObject, renderProperties) {
+  const prefix = (renderProperties.list.type === 'ul') ? '* ': `${renderProperties.list.index + 1}. `;
+  return `${prefix}${renderComponents(himilayaObject.children, renderProperties)}${os.EOL}`;
+}
+
+function p(himilayaObject, renderProperties) {
+  return `${os.EOL}${renderComponents(himilayaObject.children, renderProperties)}`;
+}
+
+function title(himilayaObject, renderProperties) {
+  return `# ${renderComponents(himilayaObject.children, renderProperties)}${os.EOL.repeat(2)}`;
 }
 
 const renderComponent = {
