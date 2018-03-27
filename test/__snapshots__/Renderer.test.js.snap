@@ -74,6 +74,12 @@ exports[`p should render 'p' 1`] = `
 This is a paragraph"
 `;
 
+exports[`strong should render 'strong' with content 1`] = `"**Strong me fam**"`;
+
+exports[`strong should render 'strong' with nested content 1`] = `"**[Google](http://www.google.com)**"`;
+
+exports[`strong should render 'strong' without content 1`] = `""`;
+
 exports[`title should render 'title' 1`] = `
 "# Title
 

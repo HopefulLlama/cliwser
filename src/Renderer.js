@@ -84,6 +84,7 @@ const renderComponent = {
   li,
   ol: generateListRenderer('ol'),
   p,
+  strong: b,
   title,
   ul: generateListRenderer('ul'),
 };

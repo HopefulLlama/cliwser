@@ -11,6 +11,7 @@ const renderedTags = [
   'li',
   'ol',
   'p',
+  'strong',
   'title',
   'ul',
 ];
@@ -107,7 +108,6 @@ const unrenderedTags = [
   'source',
   'span',
   'strike',
-  'strong',
   'style',
   'sub',
   'summary',
@@ -288,13 +288,37 @@ describe('ol', () => {
 });
 
 describe('p', () => {
-    test(renderTestName('p'), () => {
-      const himilayaObject = getHimilayaObject('p', 'This is a paragraph');
-      const markdown = renderComponent.p(himilayaObject);
+  test(renderTestName('p'), () => {
+    const himilayaObject = getHimilayaObject('p', 'This is a paragraph');
+    const markdown = renderComponent.p(himilayaObject);
 
-      expect(markdown).toMatchSnapshot();
-    });
+    expect(markdown).toMatchSnapshot();
   });
+});
+
+describe('strong', () => {
+  test(`${renderTestName('strong')} without content`, () => {
+    const himilayaObject = getHimilayaObject('strong');
+    const markdown = renderComponent.b(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('strong')} with content`, () => {
+    const himilayaObject = getHimilayaObject('strong', 'Strong me fam');
+    const markdown = renderComponent.b(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('strong')} with nested content`, () => {
+    const a = getHimilayaObject('a', 'Google', [href]);
+    const b = getHimilayaObject('strong', undefined, undefined, [a]);
+    const markdown = renderComponent.b(b);
+
+    expect(markdown).toMatchSnapshot();
+  });
+});
 
 describe('title', () => {
   test(renderTestName('title'), () => {
