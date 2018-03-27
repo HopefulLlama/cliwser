@@ -9,9 +9,12 @@ function title(himilayaObject, renderProperties) {
   return `# ${renderComponents(himilayaObject.children, renderProperties)}${os.EOL.repeat(2)}`;
 }
 
+function wrapNonEmptyString(string, wrapping) {
+  return (string !== '') ? `${wrapping}${string}${wrapping}` : string;
+};
+
 function b(himilayaObject, renderProperties) {
-  const nestedMarkdown = renderComponents(himilayaObject.children, renderProperties);
-  return (nestedMarkdown !== '') ? `**${nestedMarkdown}**` : '';
+  return wrapNonEmptyString(renderComponents(himilayaObject.children, renderProperties), '**');
 }
 
 function div(himilayaObject, renderProperties) {
@@ -28,6 +31,10 @@ function a(himilayaObject, renderProperties) {
   const href = getHimilayaAttribute(himilayaObject, 'href');
   return `[${renderComponents(himilayaObject.children, renderProperties)}](${href})`;
 }
+
+function i(himilayaObject, renderProperties) {
+  return wrapNonEmptyString(renderComponents(himilayaObject.children, renderProperties), '_');
+};
 
 function input(himilayaObject, renderProperties) {
   return `TO BE IMPLEMENTED: input${os.EOL.repeat(2)}`;
@@ -79,6 +86,8 @@ const renderComponent = {
   area,
   b,
   div,
+  em: i,
+  i,
   img,
   input,
   li,

@@ -50,7 +50,6 @@ const unrenderedTags = [
   'dir',
   'dl',
   'dt',
-  'em',
   'embed',
   'fieldset',
   'figcaption',
@@ -70,7 +69,6 @@ const unrenderedTags = [
   'header',
   'hr',
   'html',
-  'i',
   'iframe',
   'ins',
   'kbd',
@@ -219,6 +217,54 @@ describe('div', () => {
   });
 });
 
+describe('em', () => {
+  test(`${renderTestName('em')} without content`, () => {
+    const himilayaObject = getHimilayaObject('em');
+    const markdown = renderComponent.em(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('em')} with content`, () => {
+    const himilayaObject = getHimilayaObject('em', 'Bold me fam');
+    const markdown = renderComponent.em(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('em')} with nested content`, () => {
+    const a = getHimilayaObject('a', 'Google', [href]);
+    const em = getHimilayaObject('em', undefined, undefined, [a]);
+    const markdown = renderComponent.em(em);
+
+    expect(markdown).toMatchSnapshot();
+  });
+});
+
+describe('i', () => {
+  test(`${renderTestName('i')} without content`, () => {
+    const himilayaObject = getHimilayaObject('i');
+    const markdown = renderComponent.i(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('i')} with content`, () => {
+    const himilayaObject = getHimilayaObject('i', 'Bold me fam');
+    const markdown = renderComponent.i(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('i')} with nested content`, () => {
+    const a = getHimilayaObject('a', 'Google', [href]);
+    const i = getHimilayaObject('i', undefined, undefined, [a]);
+    const markdown = renderComponent.i(i);
+
+    expect(markdown).toMatchSnapshot();
+  });
+});
+
 describe('img', () => {
   test(renderTestName('img'), () => {
     const himilayaObject = getHimilayaObject('src', undefined, [alt, src, title]);
@@ -299,22 +345,22 @@ describe('p', () => {
 describe('strong', () => {
   test(`${renderTestName('strong')} without content`, () => {
     const himilayaObject = getHimilayaObject('strong');
-    const markdown = renderComponent.b(himilayaObject);
+    const markdown = renderComponent.strong(himilayaObject);
 
     expect(markdown).toMatchSnapshot();
   });
 
   test(`${renderTestName('strong')} with content`, () => {
     const himilayaObject = getHimilayaObject('strong', 'Strong me fam');
-    const markdown = renderComponent.b(himilayaObject);
+    const markdown = renderComponent.strong(himilayaObject);
 
     expect(markdown).toMatchSnapshot();
   });
 
   test(`${renderTestName('strong')} with nested content`, () => {
     const a = getHimilayaObject('a', 'Google', [href]);
-    const b = getHimilayaObject('strong', undefined, undefined, [a]);
-    const markdown = renderComponent.b(b);
+    const strong = getHimilayaObject('strong', undefined, undefined, [a]);
+    const markdown = renderComponent.strong(strong);
 
     expect(markdown).toMatchSnapshot();
   });

@@ -31,6 +31,18 @@ exports[`div should render 'div' 1`] = `
   Test content"
 `;
 
+exports[`em should render 'em' with content 1`] = `"_Bold me fam_"`;
+
+exports[`em should render 'em' with nested content 1`] = `"_[Google](http://www.google.com)_"`;
+
+exports[`em should render 'em' without content 1`] = `""`;
+
+exports[`i should render 'i' with content 1`] = `"_Bold me fam_"`;
+
+exports[`i should render 'i' with nested content 1`] = `"_[Google](http://www.google.com)_"`;
+
+exports[`i should render 'i' without content 1`] = `""`;
+
 exports[`img should render 'img' 1`] = `"![Google](http://www.cdn.com/img?=google-logo \\"Google Logo\\" )"`;
 
 exports[`input should render 'input' 1`] = `
