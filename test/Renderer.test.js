@@ -18,7 +18,6 @@ const unrenderedTags = [
   'big',
   'blockquote',
   'body',
-  'br',
   'button',
   'canvas',
   'caption',
@@ -159,6 +158,22 @@ describe('b', () => {
     const a = getHimilayaObject('a', 'Google', [href]);
     const b = getHimilayaObject('b', undefined, undefined, [a]);
     const markdown = renderComponent.b(b);
+
+    expect(markdown).toMatchSnapshot();
+  });
+});
+
+describe('br', () => {
+  test(renderTestName('br'), () => {
+    const himilayaObject = getHimilayaObject('br');
+    const markdown = renderComponent.br(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('br')} with content should be ignored`, () => {
+    const himilayaObject = getHimilayaObject('br', 'Dab on the haters');
+    const markdown = renderComponent.br(himilayaObject);
 
     expect(markdown).toMatchSnapshot();
   });

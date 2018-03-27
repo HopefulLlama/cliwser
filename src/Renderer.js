@@ -59,6 +59,10 @@ function b(himilayaObject, renderProperties) {
   return wrapNonEmptyString(renderComponents(himilayaObject.children, renderProperties), '**');
 }
 
+function br(himilayaObject, renderProperties) {
+  return os.EOL;
+}
+
 function del(himilayaObject, renderProperties) {
   return wrapNonEmptyString(renderComponents(himilayaObject.children, renderProperties), '~~');
 }
@@ -106,6 +110,7 @@ const renderComponent = {
   a,
   area,
   b,
+  br,
   del,
   div,
   em: i,

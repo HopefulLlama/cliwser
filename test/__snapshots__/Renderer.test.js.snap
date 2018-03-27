@@ -10,6 +10,16 @@ exports[`b should render 'b' with nested content 1`] = `"**[Google](http://www.g
 
 exports[`b should render 'b' without content 1`] = `""`;
 
+exports[`br should render 'br' 1`] = `
+"
+"
+`;
+
+exports[`br should render 'br' with content should be ignored 1`] = `
+"
+"
+`;
+
 exports[`del should render 'del' with content 1`] = `"~~Del me fam~~"`;
 
 exports[`del should render 'del' with nested content 1`] = `"~~[Google](http://www.google.com)~~"`;
@@ -187,12 +197,6 @@ exports[`strong should render 'strong' with content 1`] = `"**Strong me fam**"`;
 exports[`strong should render 'strong' with nested content 1`] = `"**[Google](http://www.google.com)**"`;
 
 exports[`strong should render 'strong' without content 1`] = `""`;
-
-exports[`title should render 'title' 1`] = `
-"# Title
-
-"
-`;
 
 exports[`title should render 'title' with content 1`] = `
 "# Bold me fam
