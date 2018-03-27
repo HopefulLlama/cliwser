@@ -43,6 +43,90 @@ exports[`em should render 'em' with nested content 1`] = `"_[Google](http://www.
 
 exports[`em should render 'em' without content 1`] = `""`;
 
+exports[`h1 should render 'h1' with content 1`] = `
+"# Bold me fam
+
+"
+`;
+
+exports[`h1 should render 'h1' with nested content 1`] = `
+"# [Google](http://www.google.com)
+
+"
+`;
+
+exports[`h1 should render 'h1' without content 1`] = `""`;
+
+exports[`h2 should render 'h2' with content 1`] = `
+"## Bold me fam
+
+"
+`;
+
+exports[`h2 should render 'h2' with nested content 1`] = `
+"## [Google](http://www.google.com)
+
+"
+`;
+
+exports[`h2 should render 'h2' without content 1`] = `""`;
+
+exports[`h3 should render 'h3' with content 1`] = `
+"### Bold me fam
+
+"
+`;
+
+exports[`h3 should render 'h3' with nested content 1`] = `
+"### [Google](http://www.google.com)
+
+"
+`;
+
+exports[`h3 should render 'h3' without content 1`] = `""`;
+
+exports[`h4 should render 'h4' with content 1`] = `
+"#### Bold me fam
+
+"
+`;
+
+exports[`h4 should render 'h4' with nested content 1`] = `
+"#### [Google](http://www.google.com)
+
+"
+`;
+
+exports[`h4 should render 'h4' without content 1`] = `""`;
+
+exports[`h5 should render 'h5' with content 1`] = `
+"##### Bold me fam
+
+"
+`;
+
+exports[`h5 should render 'h5' with nested content 1`] = `
+"##### [Google](http://www.google.com)
+
+"
+`;
+
+exports[`h5 should render 'h5' without content 1`] = `""`;
+
+exports[`h6 should render 'h6' with content 1`] = `
+"###### Bold me fam
+
+"
+`;
+
+exports[`h6 should render 'h6' with nested content 1`] = `
+"###### [Google](http://www.google.com)
+
+"
+`;
+
+exports[`h6 should render 'h6' without content 1`] = `""`;
+
 exports[`i should render 'i' with content 1`] = `"_Bold me fam_"`;
 
 exports[`i should render 'i' with nested content 1`] = `"_[Google](http://www.google.com)_"`;
@@ -109,3 +193,17 @@ exports[`title should render 'title' 1`] = `
 
 "
 `;
+
+exports[`title should render 'title' with content 1`] = `
+"# Bold me fam
+
+"
+`;
+
+exports[`title should render 'title' with nested content 1`] = `
+"# [Google](http://www.google.com)
+
+"
+`;
+
+exports[`title should render 'title' without content 1`] = `""`;

@@ -5,8 +5,16 @@ function getHimilayaAttribute(himilayaObject, attribute) {
   return (attr !== undefined) ? attr.value : '';
 }
 
+function prependNonEmptyString(string, prefix) {
+  return (string !== '') ? `${prefix}${string}` : '';
+}
+
+function appendNonEmptyString(string, suffix) {
+  return (string !== '') ? `${string}${suffix}` : '';
+}
+
 function wrapNonEmptyString(string, wrapping) {
-  return (string !== '') ? `${wrapping}${string}${wrapping}` : string;
+  return (string !== '') ? `${wrapping}${string}${wrapping}` : '';
 }
 
 function generateListRenderer(tagName) {
@@ -25,6 +33,15 @@ function generateListRenderer(tagName) {
     return `${os.EOL}${innerMarkdown}`;
   };
 }
+
+function generateHeaderRenderer(frequency) {
+  return (himilayaObject, renderProperties) => {
+    return appendNonEmptyString(
+      prependNonEmptyString(renderComponents(himilayaObject.children, renderProperties), `${'#'.repeat(frequency)} `)
+      , os.EOL.repeat(2)
+    );
+  };
+};
 
 function a(himilayaObject, renderProperties) {
   const href = getHimilayaAttribute(himilayaObject, 'href');
@@ -82,7 +99,7 @@ function p(himilayaObject, renderProperties) {
 }
 
 function title(himilayaObject, renderProperties) {
-  return `# ${renderComponents(himilayaObject.children, renderProperties)}${os.EOL.repeat(2)}`;
+  return `# ${renderComponents(himilayaObject.children, renderProperties)}`;
 }
 
 const renderComponent = {
@@ -92,6 +109,12 @@ const renderComponent = {
   del,
   div,
   em: i,
+  h1: generateHeaderRenderer(1),
+  h2: generateHeaderRenderer(2),
+  h3: generateHeaderRenderer(3),
+  h4: generateHeaderRenderer(4),
+  h5: generateHeaderRenderer(5),
+  h6: generateHeaderRenderer(6),
   i,
   img,
   input,
@@ -100,7 +123,7 @@ const renderComponent = {
   p,
   strike: del,
   strong: b,
-  title,
+  title: generateHeaderRenderer(1),
   ul: generateListRenderer('ul'),
 };
 
