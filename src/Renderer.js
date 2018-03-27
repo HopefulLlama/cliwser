@@ -9,6 +9,11 @@ function title(himilayaObject, renderProperties) {
   return `# ${renderComponents(himilayaObject.children, renderProperties)}${os.EOL.repeat(2)}`;
 }
 
+function b(himilayaObject, renderProperties) {
+  const nestedMarkdown = renderComponents(himilayaObject.children, renderProperties);
+  return (nestedMarkdown !== '') ? `**${nestedMarkdown}**` : '';
+}
+
 function div(himilayaObject, renderProperties) {
   const indentedMarkdown = himilayaObject.children
     .map(himilayaChild => renderHimilayaObject(himilayaChild, renderProperties))
@@ -72,6 +77,7 @@ function area(himilayaObject, renderProperties) {
 const renderComponent = {
   a,
   area,
+  b,
   div,
   img,
   input,

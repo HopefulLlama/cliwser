@@ -5,6 +5,7 @@ const { renderComponent, renderComponents } = require('../src/Renderer');
 const renderedTags = [
   'a',
   'area',
+  'b',
   'img',
   'input',
   'li',
@@ -23,7 +24,6 @@ const unrenderedTags = [
   'article',
   'aside',
   'audio',
-  'b',
   'base',
   'basefont',
   'bdi',
@@ -137,7 +137,7 @@ const src = getHimilayaAttribute('src', 'http://www.cdn.com/img?=google-logo');
 const title = getHimilayaAttribute('title', 'Google Logo');
 
 function renderTestName(tagName, properties) {
-  return `should render '${tagName}'}`;
+  return `should render '${tagName}'`;
 }
 
 unrenderedTags.forEach(tag => {
@@ -159,6 +159,30 @@ describe('area', () => {
   test(renderTestName('area'), () => {
     const himilayaObject = getHimilayaObject('area', undefined, [alt, href]);
     const markdown = renderComponent.area(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+});
+
+describe('b', () => {
+  test(`${renderTestName('b')} without content`, () => {
+    const himilayaObject = getHimilayaObject('b');
+    const markdown = renderComponent.b(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('b')} with content`, () => {
+    const himilayaObject = getHimilayaObject('b', 'Bold me fam');
+    const markdown = renderComponent.b(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('b')} with nested content`, () => {
+    const a = getHimilayaObject('a', 'Google', [href]);
+    const b = getHimilayaObject('b', undefined, undefined, [a]);
+    const markdown = renderComponent.b(b);
 
     expect(markdown).toMatchSnapshot();
   });

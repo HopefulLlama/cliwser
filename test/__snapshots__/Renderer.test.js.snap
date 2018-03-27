@@ -1,8 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`a should render 'a'} 1`] = `"[Google](http://www.google.com)"`;
+exports[`a should render 'a' 1`] = `"[Google](http://www.google.com)"`;
 
-exports[`area should render 'area'} 1`] = `"[Google](http://www.google.com)"`;
+exports[`area should render 'area' 1`] = `"[Google](http://www.google.com)"`;
+
+exports[`b should render 'b' with content 1`] = `"**Bold me fam**"`;
+
+exports[`b should render 'b' with nested content 1`] = `"**[Google](http://www.google.com)**"`;
+
+exports[`b should render 'b' without content 1`] = `""`;
 
 exports[`div Content should all be nested 1`] = `
 "
@@ -20,14 +26,14 @@ exports[`div Nested divs should indent even further 1`] = `
     Child div"
 `;
 
-exports[`div should render 'div'} 1`] = `
+exports[`div should render 'div' 1`] = `
 "
   Test content"
 `;
 
-exports[`img should render 'img'} 1`] = `"![Google](http://www.cdn.com/img?=google-logo \\"Google Logo\\" )"`;
+exports[`img should render 'img' 1`] = `"![Google](http://www.cdn.com/img?=google-logo \\"Google Logo\\" )"`;
 
-exports[`input should render 'input'} 1`] = `
+exports[`input should render 'input' 1`] = `
 "TO BE IMPLEMENTED: input
 
 "
@@ -63,12 +69,12 @@ exports[`li should render 'li' with '2.' with {list.type: 'ol', list.index: 2} 1
 "
 `;
 
-exports[`p should render 'p'} 1`] = `
+exports[`p should render 'p' 1`] = `
 "
 This is a paragraph"
 `;
 
-exports[`title should render 'title'} 1`] = `
+exports[`title should render 'title' 1`] = `
 "# Title
 
 "
