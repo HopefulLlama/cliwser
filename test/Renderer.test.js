@@ -2,8 +2,11 @@ const { getHimilayaAttribute, getHimilayaObject }  = require('./TestUtils');
 
 const { renderComponent, renderComponents } = require('../src/Renderer');
 
-const unrenderedTags = [
+const intentionallyUnrenderedTags = [
   '!DOCTYPE',
+];
+
+const unrenderedTags = [
   'address',
   'applet',
   'article',
@@ -113,11 +116,13 @@ function renderTestName(tagName, properties) {
   return `should render '${tagName}'`;
 }
 
-unrenderedTags.forEach(tag => {
-  test(`${tag} does not have a renderer`, () => {
-    expect(renderComponent[tag]).toBe(undefined);
+unrenderedTags
+  .concat(intentionallyUnrenderedTags)
+  .forEach(tag => {
+    test(`${tag} does not have a renderer`, () => {
+      expect(renderComponent[tag]).toBe(undefined);
+    });
   });
-});
 
 describe('a', () => {
   test(renderTestName('a'), () => {
