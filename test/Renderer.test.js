@@ -7,7 +7,6 @@ const intentionallyUnrenderedTags = [
 ];
 
 const unrenderedTags = [
-  'address',
   'applet',
   'article',
   'aside',
@@ -174,6 +173,27 @@ describe('acronym', () => {
   test(`${renderTestName('acronym')} with no content`, () => {
     const himilayaObject = getHimilayaObject('acronym');
     const markdown = renderComponent.acronym(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+});
+
+describe('address', () => {
+  test(renderTestName('address'), () => {
+    const address = getHimilayaObject('address', 'Test content');
+    const markdown = renderComponent.address(address);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test('Content should all be nested', () => {
+    const a = getHimilayaObject('a', 'Google', [href]);
+    const p1 = getHimilayaObject('p', 'Click here to go to ', undefined, [a]);
+    const p2 = getHimilayaObject('p', 'Google will let you search the web.');
+
+    const parentaddress = getHimilayaObject('address', undefined, undefined, [p1, p2]);
+
+    const markdown = renderComponent.address(parentaddress);
 
     expect(markdown).toMatchSnapshot();
   });

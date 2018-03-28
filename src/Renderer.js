@@ -57,6 +57,14 @@ function abbr(himilayaObject, renderProperties) {
   return `${abbreviation}${titleSuffix}`;
 }
 
+function address(himilayaObject, renderProperties) {
+  return (himilayaObject.children !== undefined) ?
+    renderComponentLines(himilayaObject.children, renderProperties)
+      .map(markdown => wrapNonEmptyString(markdown, '_'))
+      .join(os.EOL) :
+  '';
+};
+
 function area(himilayaObject, renderProperties) {
   const alt = getHimilayaAttribute(himilayaObject, 'alt');
   const href = getHimilayaAttribute(himilayaObject, 'href');
@@ -77,12 +85,11 @@ function del(himilayaObject, renderProperties) {
 }
 
 function div(himilayaObject, renderProperties) {
-  const indentedMarkdown = himilayaObject.children
-    .map(himilayaChild => renderHimilayaObject(himilayaChild, renderProperties))
-    .join(os.EOL)
-    .split(os.EOL)
-    .map(markdown => `  ${markdown}`)
-    .join(os.EOL);
+  const indentedMarkdown = (himilayaObject.children !== undefined) ?
+    renderComponentLines(himilayaObject.children, renderProperties)
+      .map(markdown => `  ${markdown}`)
+      .join(os.EOL) :
+    '';
   return `${os.EOL}${indentedMarkdown}`;
 }
 
@@ -119,6 +126,7 @@ const renderComponent = {
   a,
   abbr,
   acronym: abbr,
+  address,
   area,
   b,
   br,
@@ -160,6 +168,10 @@ function renderComponents(himilayaArray, renderProperties) {
   return himilayaArray
     .map(himilayaChild => renderHimilayaObject(himilayaChild, renderProperties))
     .join('');
+}
+
+function renderComponentLines(himilayaArray, renderProperties) {
+  return renderComponents(himilayaArray, renderProperties).split(os.EOL);
 }
 
 module.exports = {

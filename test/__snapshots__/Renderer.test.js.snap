@@ -14,6 +14,14 @@ exports[`acronym should render 'acronym' with no content 1`] = `""`;
 
 exports[`acronym should render 'acronym' with title 1`] = `"www (World Wide Web)"`;
 
+exports[`address Content should all be nested 1`] = `
+"
+_Click here to go to [Google](http://www.google.com)_
+_Google will let you search the web._"
+`;
+
+exports[`address should render 'address' 1`] = `"_Test content_"`;
+
 exports[`area should render 'area' 1`] = `"[Google](http://www.google.com)"`;
 
 exports[`b should render 'b' with content 1`] = `"**Bold me fam**"`;
@@ -42,7 +50,6 @@ exports[`div Content should all be nested 1`] = `
 "
   
   Click here to go to [Google](http://www.google.com)
-  
     
     Google will let you search the web."
 `;
@@ -50,7 +57,6 @@ exports[`div Content should all be nested 1`] = `
 exports[`div Nested divs should indent even further 1`] = `
 "
   Parent div
-  
     Child div"
 `;
 
