@@ -24,6 +24,25 @@ exports[`address should render 'address' 1`] = `"_Test content_"`;
 
 exports[`area should render 'area' 1`] = `"[Google](http://www.google.com)"`;
 
+exports[`article Content should all be nested 1`] = `
+"
+  
+  Click here to go to [Google](http://www.google.com)
+    
+    Google will let you search the web."
+`;
+
+exports[`article Nested articles should indent even further 1`] = `
+"
+  Parent article
+    Child article"
+`;
+
+exports[`article should render 'article' 1`] = `
+"
+  Test content"
+`;
+
 exports[`b should render 'b' with content 1`] = `"**Bold me fam**"`;
 
 exports[`b should render 'b' with nested content 1`] = `"**[Google](http://www.google.com)**"`;

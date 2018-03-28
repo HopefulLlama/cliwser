@@ -9,7 +9,6 @@ const intentionallyUnrenderedTags = [
 ];
 
 const unrenderedTags = [
-  'article',
   'aside',
   'audio',
   'base',
@@ -203,6 +202,37 @@ describe('area', () => {
   test(renderTestName('area'), () => {
     const himilayaObject = getHimilayaObject('area', undefined, [alt, href]);
     const markdown = renderComponent.area(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+});
+
+describe('article', () => {
+  test(renderTestName('article'), () => {
+    const article = getHimilayaObject('article', 'Test content');
+    const markdown = renderComponent.article(article);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test('Nested articles should indent even further', () => {
+    const nestedarticle = getHimilayaObject('article', 'Child article');
+    const parentarticle = getHimilayaObject('article', 'Parent article', undefined, [nestedarticle]);
+
+    const markdown = renderComponent.article(parentarticle);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test('Content should all be nested', () => {
+    const a = getHimilayaObject('a', 'Google', [href]);
+    const p1 = getHimilayaObject('p', 'Click here to go to ', undefined, [a]);
+    const p2 = getHimilayaObject('p', 'Google will let you search the web.');
+
+    const nestedarticle = getHimilayaObject('article', undefined, undefined, [p2]);
+    const parentarticle = getHimilayaObject('article', undefined, undefined, [p1, nestedarticle]);
+
+    const markdown = renderComponent.article(parentarticle);
 
     expect(markdown).toMatchSnapshot();
   });

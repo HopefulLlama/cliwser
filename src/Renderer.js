@@ -128,6 +128,7 @@ const renderComponent = {
   acronym: abbr,
   address,
   area,
+  article: div,
   b,
   br,
   del,
