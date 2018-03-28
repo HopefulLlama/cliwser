@@ -48,6 +48,15 @@ function a(himilayaObject, renderProperties) {
   return `[${renderComponents(himilayaObject.children, renderProperties)}](${href})`;
 }
 
+function abbr(himilayaObject, renderProperties) {
+  const abbreviation = renderComponents(himilayaObject.children, renderProperties);
+
+  const title = getHimilayaAttribute(himilayaObject, 'title');
+  const titleSuffix = appendNonEmptyString(prependNonEmptyString(title, ' ('), ')');
+
+  return `${abbreviation}${titleSuffix}`;
+}
+
 function area(himilayaObject, renderProperties) {
   const alt = getHimilayaAttribute(himilayaObject, 'alt');
   const href = getHimilayaAttribute(himilayaObject, 'href');
@@ -108,6 +117,8 @@ function title(himilayaObject, renderProperties) {
 
 const renderComponent = {
   a,
+  abbr,
+  acronym: abbr,
   area,
   b,
   br,

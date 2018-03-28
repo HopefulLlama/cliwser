@@ -4,8 +4,6 @@ const { renderComponent, renderComponents } = require('../src/Renderer');
 
 const unrenderedTags = [
   '!DOCTYPE',
-  'abbr',
-  'acronym',
   'address',
   'applet',
   'article',
@@ -125,6 +123,52 @@ describe('a', () => {
   test(renderTestName('a'), () => {
     const himilayaObject = getHimilayaObject('a', 'Google', [href]);
     const markdown = renderComponent.a(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+});
+
+describe('abbr', () => {
+  test(renderTestName('abbr'), () => {
+    const himilayaObject = getHimilayaObject('abbr', 'www');
+    const markdown = renderComponent.abbr(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('abbr')} with title`, () => {
+    const himilayaObject = getHimilayaObject('abbr', 'www', [getHimilayaAttribute('title', 'World Wide Web')]);
+    const markdown = renderComponent.abbr(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('abbr')} with no content`, () => {
+    const himilayaObject = getHimilayaObject('abbr');
+    const markdown = renderComponent.abbr(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+});
+
+describe('acronym', () => {
+  test(renderTestName('acronym'), () => {
+    const himilayaObject = getHimilayaObject('acronym', 'www');
+    const markdown = renderComponent.acronym(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('acronym')} with title`, () => {
+    const himilayaObject = getHimilayaObject('acronym', 'www', [getHimilayaAttribute('title', 'World Wide Web')]);
+    const markdown = renderComponent.acronym(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('acronym')} with no content`, () => {
+    const himilayaObject = getHimilayaObject('acronym');
+    const markdown = renderComponent.acronym(himilayaObject);
 
     expect(markdown).toMatchSnapshot();
   });
