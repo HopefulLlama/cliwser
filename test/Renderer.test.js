@@ -4,10 +4,11 @@ const { renderComponent, renderComponents } = require('../src/Renderer');
 
 const intentionallyUnrenderedTags = [
   '!DOCTYPE',
+  'applet',
+  'param',
 ];
 
 const unrenderedTags = [
-  'applet',
   'article',
   'aside',
   'audio',
@@ -67,7 +68,6 @@ const unrenderedTags = [
   'optgroup',
   'option',
   'output',
-  'param',
   'picture',
   'pre',
   'progress',
