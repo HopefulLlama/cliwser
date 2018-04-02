@@ -10,7 +10,6 @@ const intentionallyUnrenderedTags = [
 ];
 
 const unrenderedTags = [
-  'audio',
   'base',
   'basefont',
   'bdi',
@@ -233,6 +232,48 @@ describe('article', () => {
     const parentarticle = getHimilayaObject('article', undefined, undefined, [p1, nestedarticle]);
 
     const markdown = renderComponent.article(parentarticle);
+
+    expect(markdown).toMatchSnapshot();
+  });
+});
+
+describe('audio', () => {
+  test(`${renderTestName('audio')} without content`, () => {
+    const himilayaObject = getHimilayaObject('audio');
+    const markdown = renderComponent.audio(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('audio')} with content`, () => {
+    const himilayaObject = getHimilayaObject('audio', 'Audio me fam');
+    const markdown = renderComponent.audio(himilayaObject);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('audio')} with src attribute`, () => {
+    const himilayaObject = getHimilayaObject('audio', undefined, [getHimilayaAttribute('src', 'wibble.mp3')]);
+    const markdown = renderComponent.audio(himilayaObject);
+
+    console.log(markdown);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('audio')} with source child`, () => {
+    const source = getHimilayaObject('source', undefined, [getHimilayaAttribute('src', 'wibble.mp3')]);
+    const audio = getHimilayaObject('audio', undefined, undefined, [source]);
+    const markdown = renderComponent.audio(audio);
+
+    expect(markdown).toMatchSnapshot();
+  });
+
+  test(`${renderTestName('audio')} with src tag and source children`, () => {
+    const source1 = getHimilayaObject('source', undefined, [getHimilayaAttribute('src', 'wibble.mp3')]);
+    const source2 = getHimilayaObject('source', undefined, [getHimilayaAttribute('src', 'wobble.mp3')]);
+    const audio = getHimilayaObject('audio', undefined, [getHimilayaAttribute('src', 'wubble.mp3')], [source1, source2]);
+    const markdown = renderComponent.audio(audio);
 
     expect(markdown).toMatchSnapshot();
   });

@@ -41,11 +41,15 @@ function generateHeaderRenderer(frequency) {
       , os.EOL.repeat(2)
     );
   };
-};
+}
+
+function renderLink(text, link) {
+  return `[${text}](${link})`;
+}
 
 function a(himilayaObject, renderProperties) {
   const href = getHimilayaAttribute(himilayaObject, 'href');
-  return `[${renderComponents(himilayaObject.children, renderProperties)}](${href})`;
+  return renderLink(renderComponents(himilayaObject.children, renderProperties), href);
 }
 
 function abbr(himilayaObject, renderProperties) {
@@ -70,6 +74,24 @@ function area(himilayaObject, renderProperties) {
   const href = getHimilayaAttribute(himilayaObject, 'href');
 
   return `[${alt}](${href})`;
+}
+
+function audio(himilayaObject, renderProperties) {
+  const sources = [getHimilayaAttribute(himilayaObject, 'src')]
+    .concat(
+      (himilayaObject.children !== undefined) ?
+        himilayaObject.children
+          .filter(child => child.tagName === 'source')
+          .map(child => getHimilayaAttribute(child, 'src')) :
+        []
+    )
+    .filter(source => source !== '');
+
+  return sources.length > 0 ?
+    sources
+      .map(source => `${renderLink(`audio: ${source}`, source)} `)
+      .join('') :
+    '';
 }
 
 function b(himilayaObject, renderProperties) {
@@ -104,9 +126,9 @@ function input(himilayaObject, renderProperties) {
 function img(himilayaObject, renderProperties) {
   const alt = getHimilayaAttribute(himilayaObject, 'alt');
   const src = getHimilayaAttribute(himilayaObject, 'src');
-  let title = getHimilayaAttribute(himilayaObject, 'title');
-  title = (title !== '') ? ` "${title}" ` : title;
-  return `![${alt}](${src}${title})`;
+  const title = wrapNonEmptyString(wrapNonEmptyString(getHimilayaAttribute(himilayaObject, 'title'), '"'), ' ');
+  const link = `${src}${title}`;
+  return `!${renderLink(alt, link)}`;
 }
 
 function li(himilayaObject, renderProperties) {
@@ -129,6 +151,7 @@ const renderComponent = {
   address,
   area,
   article: div,
+  audio,
   b,
   br,
   del,
