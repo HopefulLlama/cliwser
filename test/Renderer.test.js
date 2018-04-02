@@ -6,12 +6,12 @@ const intentionallyUnrenderedTags = [
   '!DOCTYPE',
   'applet',
   'aside',
+  'base',
+  'basefont',
   'param',
 ];
 
 const unrenderedTags = [
-  'base',
-  'basefont',
   'bdi',
   'bdo',
   'big',
