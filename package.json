@@ -4,12 +4,35 @@
   "description": "NodeJS CLI internet browser",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "eslint-fix": "eslint  .eslintrc.js ./src/**/*.js ./test/**/*.js --no-ignore --fix",
+    "eslint": "eslint .eslintrc.js ./src/**/*.js ./test/**/*.js --no-ignore",
+    "test": "jest",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    ".eslintrc.js": [
+      "./node_modules/.bin/eslint --fix",
+      "git add"
+    ],
+    "src/**/*.js": [
+      "./node_modules/.bin/eslint --fix",
+      "git add"
+    ],
+    "test/**/*.js": [
+      "./node_modules/.bin/eslint --fix",
+      "git add"
+    ]
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "jest": "^22.4.3"
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.14.3",
+    "jest": "^22.4.3",
+    "lint-staged": "^7.0.2",
+    "prettier": "^1.11.1"
   },
   "dependencies": {
     "himalaya": "^1.0.1",
