@@ -2,14 +2,21 @@ const { getHimilayaAttribute, getHimilayaObject } = require('./TestUtils');
 
 const { renderComponent } = require('../src/Renderer');
 
-const intentionallyUnrenderedTags = ['!DOCTYPE', 'applet', 'aside', 'base', 'basefont', 'param'];
+const intentionallyUnrenderedTags = [
+	'!DOCTYPE',
+	'applet',
+	'aside',
+	'base',
+	'basefont',
+	'big',
+	'blockquote',
+	'body',
+	'param',
+];
 
 const unrenderedTags = [
 	'bdi',
 	'bdo',
-	'big',
-	'blockquote',
-	'body',
 	'button',
 	'canvas',
 	'caption',
