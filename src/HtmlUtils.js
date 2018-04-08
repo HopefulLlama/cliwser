@@ -16,10 +16,21 @@ function sanitiseMarkdown(markdown) {
 	return markdown.replace(/^\s*$(?:\r\n?|\n)/gm, os.EOL).replace(/[\r?\n|\r]{3,}/g, os.EOL);
 }
 
+function forceChildren(himilayaArray) {
+	himilayaArray.forEach(himilayan => {
+		if (himilayan.children === undefined) {
+			himilayan.children = [];
+		}
+
+		forceChildren(himilayan.children);
+	});
+	return himilayaArray;
+}
+
 function prettyPrintHtml(html) {
 	const strippedHtml = stripScriptTags(stripStyleTags(html));
-	const himilayaArray = parse(strippedHtml);
-	const markdown = sanitiseMarkdown(Renderer.renderComponents(himilayaArray, { indentation: 0 }));
+	const himilayaArray = forceChildren(parse(strippedHtml));
+	const markdown = sanitiseMarkdown(Renderer.renderComponents(himilayaArray));
 	console.log(markdown);
 }
 

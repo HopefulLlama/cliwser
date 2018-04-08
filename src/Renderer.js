@@ -64,11 +64,9 @@ function abbr(himilayaObject, renderProperties) {
 }
 
 function address(himilayaObject, renderProperties) {
-	return himilayaObject.children !== undefined
-		? renderComponentLines(himilayaObject.children, renderProperties)
-			.map(markdown => wrapNonEmptyString(markdown, '_'))
-			.join(os.EOL)
-		: '';
+	return renderComponentLines(himilayaObject.children, renderProperties)
+		.map(markdown => wrapNonEmptyString(markdown, '_'))
+		.join(os.EOL);
 }
 
 function area(himilayaObject) {
@@ -81,11 +79,9 @@ function area(himilayaObject) {
 function audio(himilayaObject) {
 	const sources = [getHimilayaAttribute(himilayaObject, 'src')]
 		.concat(
-			himilayaObject.children !== undefined
-				? himilayaObject.children
-					.filter(child => child.tagName === 'source')
-					.map(child => getHimilayaAttribute(child, 'src'))
-				: []
+			himilayaObject.children
+				.filter(child => child.tagName === 'source')
+				.map(child => getHimilayaAttribute(child, 'src'))
 		)
 		.filter(source => source !== '');
 
@@ -105,12 +101,9 @@ function del(himilayaObject, renderProperties) {
 }
 
 function div(himilayaObject, renderProperties) {
-	const indentedMarkdown =
-		himilayaObject.children !== undefined
-			? renderComponentLines(himilayaObject.children, renderProperties)
-				.map(markdown => `  ${markdown}`)
-				.join(os.EOL)
-			: '';
+	const indentedMarkdown = renderComponentLines(himilayaObject.children, renderProperties)
+		.map(markdown => `  ${markdown}`)
+		.join(os.EOL);
 	return `${os.EOL}${indentedMarkdown}`;
 }
 
