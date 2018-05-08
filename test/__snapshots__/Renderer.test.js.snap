@@ -69,6 +69,8 @@ exports[`br should render 'br' with content should be ignored 1`] = `
 "
 `;
 
+exports[`button should render 'button' 1`] = `"[Button: Click me fam]"`;
+
 exports[`del should render 'del' with content 1`] = `"~~Del me fam~~"`;
 
 exports[`del should render 'del' with nested content 1`] = `"~~[Google](http://www.google.com)~~"`;

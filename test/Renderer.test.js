@@ -17,7 +17,6 @@ const intentionallyUnrenderedTags = [
 const unrenderedTags = [
 	'bdi',
 	'bdo',
-	'button',
 	'canvas',
 	'caption',
 	'center',
@@ -315,6 +314,15 @@ describe('br', () => {
 	test(`${renderTestName('br')} with content should be ignored`, () => {
 		const himilayaObject = getHimilayaObject('br', 'Dab on the haters');
 		const markdown = renderComponent.br(himilayaObject);
+
+		expect(markdown).toMatchSnapshot();
+	});
+});
+
+describe('button', () => {
+	test(renderTestName('button'), () => {
+		const himilayaObject = getHimilayaObject('button', 'Click me fam');
+		const markdown = renderComponent.button(himilayaObject);
 
 		expect(markdown).toMatchSnapshot();
 	});

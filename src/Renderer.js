@@ -46,7 +46,8 @@ function generateHeaderRenderer(frequency) {
 }
 
 function renderLink(text, link) {
-	return `[${text}](${link})`;
+	const wrappedLink = link !== undefined ? `(${link})` : '';
+	return `[${text}]${wrappedLink}`;
 }
 
 function a(himilayaObject, renderProperties) {
@@ -96,6 +97,10 @@ function br() {
 	return os.EOL;
 }
 
+function button(himilayaObject, renderProperties) {
+	return renderLink(`Button: ${renderComponents(himilayaObject.children, renderProperties)}`);
+}
+
 function del(himilayaObject, renderProperties) {
 	return wrapNonEmptyString(renderComponents(himilayaObject.children, renderProperties), '~~');
 }
@@ -142,6 +147,7 @@ const renderComponent = {
 	audio,
 	b,
 	br,
+	button,
 	del,
 	div,
 	em: i,
