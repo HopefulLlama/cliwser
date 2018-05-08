@@ -11,13 +11,13 @@ const intentionallyUnrenderedTags = [
 	'big',
 	'blockquote',
 	'body',
+	'canvas',
 	'param',
 ];
 
 const unrenderedTags = [
 	'bdi',
 	'bdo',
-	'canvas',
 	'caption',
 	'center',
 	'cite',
