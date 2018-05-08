@@ -12,6 +12,7 @@ const intentionallyUnrenderedTags = [
 	'blockquote',
 	'body',
 	'canvas',
+	'center',
 	'param',
 ];
 
@@ -19,7 +20,6 @@ const unrenderedTags = [
 	'bdi',
 	'bdo',
 	'caption',
-	'center',
 	'cite',
 	'code',
 	'col',
