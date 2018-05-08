@@ -148,6 +148,7 @@ const renderComponent = {
 	b,
 	br,
 	button,
+	cite: i,
 	del,
 	div,
 	em: i,

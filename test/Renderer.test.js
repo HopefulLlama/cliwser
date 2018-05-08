@@ -20,7 +20,6 @@ const unrenderedTags = [
 	'bdi',
 	'bdo',
 	'caption',
-	'cite',
 	'code',
 	'col',
 	'colgroup',
@@ -328,6 +327,30 @@ describe('button', () => {
 	});
 });
 
+describe('cite', () => {
+	test(`${renderTestName('cite')} without content`, () => {
+		const himilayaObject = getHimilayaObject('cite');
+		const markdown = renderComponent.cite(himilayaObject);
+
+		expect(markdown).toMatchSnapshot();
+	});
+
+	test(`${renderTestName('cite')} with content`, () => {
+		const himilayaObject = getHimilayaObject('cite', 'Italics me fam');
+		const markdown = renderComponent.cite(himilayaObject);
+
+		expect(markdown).toMatchSnapshot();
+	});
+
+	test(`${renderTestName('cite')} with nested content`, () => {
+		const a = getHimilayaObject('a', 'Google', [href]);
+		const cite = getHimilayaObject('cite', undefined, undefined, [a]);
+		const markdown = renderComponent.cite(cite);
+
+		expect(markdown).toMatchSnapshot();
+	});
+});
+
 describe('del', () => {
 	test(`${renderTestName('del')} without content`, () => {
 		const himilayaObject = getHimilayaObject('del');
@@ -560,7 +583,7 @@ describe('i', () => {
 	});
 
 	test(`${renderTestName('i')} with content`, () => {
-		const himilayaObject = getHimilayaObject('i', 'Bold me fam');
+		const himilayaObject = getHimilayaObject('i', 'Italics me fam');
 		const markdown = renderComponent.i(himilayaObject);
 
 		expect(markdown).toMatchSnapshot();
